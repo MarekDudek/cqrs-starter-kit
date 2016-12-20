@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public class DrinksOrdered {
+class DrinksOrdered {
 
-    private final UUID              id;
-    private final List<OrderedItem> items;
+    UUID              id;
+    List<OrderedItem> items;
 }

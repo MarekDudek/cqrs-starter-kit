@@ -5,16 +5,25 @@ import com.marekdudek.cqrs_starter_kit.commands.PlaceOrder;
 import com.marekdudek.cqrs_starter_kit.errors.TabNotOpen;
 import com.marekdudek.cqrs_starter_kit.events.TabOpened;
 
-import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
-public final class Tab {
+class Tab {
 
-    public Iterable<?> handle(final OpenTab command) {
-        final TabOpened event = new TabOpened(command.getId(), command.getTableNumber(), command.getWaiter());
-        return newArrayList(event);
+    boolean open = false;
+
+    Iterable<?> handle(OpenTab command) {
+        TabOpened event = new TabOpened(command.getId(), command.getTableNumber(), command.getWaiter());
+        return singletonList(event);
     }
 
-    public Iterable<?> handle(final PlaceOrder command) {
-        throw new TabNotOpen();
+    void apply(TabOpened event) {
+        open = true;
+    }
+
+    Iterable<?> handle(PlaceOrder command) {
+        if (!open)
+            throw new TabNotOpen();
+        return emptyList();
     }
 }

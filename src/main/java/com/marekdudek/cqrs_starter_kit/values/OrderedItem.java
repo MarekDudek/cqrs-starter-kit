@@ -1,14 +1,14 @@
 package com.marekdudek.cqrs_starter_kit.values;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
 
-@Data
+@AllArgsConstructor
 public class OrderedItem {
 
-    private final int        menuNumber;
-    private final String     description;
-    private final boolean    isDrink;
-    private final BigDecimal price;
+    int        menuNumber;
+    String     description;
+    boolean    isDrink;
+    BigDecimal price;
 }

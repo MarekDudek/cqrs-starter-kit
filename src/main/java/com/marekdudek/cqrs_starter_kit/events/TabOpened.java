@@ -1,13 +1,15 @@
 package com.marekdudek.cqrs_starter_kit.events;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public final class TabOpened {
+@AllArgsConstructor
+public class TabOpened {
 
-    private final UUID   id;
-    private final int    tableNumber;
-    private final String waiter;
+    UUID   id;
+    int    tableNumber;
+    String waiter;
 }
